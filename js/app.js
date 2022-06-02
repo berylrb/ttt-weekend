@@ -177,7 +177,7 @@ document.querySelector('body').addEventListener('click', handleClick)
 
 document.querySelector('.board').addEventListener('click', colorChange)
 
-document.querySelector('.board').addEventListener('click', addImg)
+// document.querySelector('.board').addEventListener('click', addImg)
 
 
 /*-------------------------------- Functions --------------------------------*/
@@ -203,9 +203,11 @@ function colorChange(evt) {
   board.forEach((item, idx) => {
       if (turn === 1) {
         evt.target.style.backgroundColor = "#faae2b"
+        evt.target.innerHTML = '<img src="/assets/Untitled_Artwork.png">'
         messageEl.style.color = "#fa5246"
       } else if (turn === -1) {
-        evt.target.style.backgroundColor = "#fa5246" 
+        evt.target.style.backgroundColor = "#fa5246"
+        evt.target.innerHTML = '<img src="/assets/Untitled_Artwork 6.png">' 
         messageEl.style.color = "#faae2b"
       } else {
       evt.target.style.backgroundColor = "#f2f7f5"
@@ -213,13 +215,13 @@ function colorChange(evt) {
 })
 }
 
-function addImg(evt) {
-  if (turn === 1) {
-    evt.target.innerHTML = '<img src="https://i.imgur.com/FNYYLpD.png">'
-  } else if (turn === -1) {
-    evt.target.innerHTML = '<img src="https://i.imgur.com/xu281Il.png">'
-  }
-}
+// function addImg(evt) {
+//   if (turn === 1) {
+//     evt.target.innerHTML = '<img src="/assets/Untitled_Artwork.png">'
+//   } else if (turn === -1) {
+//     evt.target.innerHTML = '<img src="/assets/Untitled_Artwork 6.png">'
+//   }
+// }
 
 
 
@@ -280,3 +282,21 @@ function getWinner() {
   }
   })
 }
+
+
+
+// function colorChange(evt) {
+//   board.forEach((item, idx) => {
+//       if (turn === 1) {
+//         evt.target.style.backgroundColor = "#faae2b"
+//         evt.target.innerHTML = '<img src="/assets/Untitled_Artwork.png">'
+//         messageEl.style.color = "#fa5246"
+//       } else if (turn === -1) {
+//         evt.target.style.backgroundColor = "#fa5246"
+//         evt.target.innerHTML = '<img src="/assets/Untitled_Artwork 6.png">' 
+//         messageEl.style.color = "#faae2b"
+//       } else {
+//       evt.target.style.backgroundColor = "#f2f7f5"
+//     }
+// })
+// }
