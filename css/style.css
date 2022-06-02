@@ -18,6 +18,7 @@ body {
 #message {
   margin: 0 0 35px 0;
   font-size: 25px;
+  font-family: 'Abril Fatface', cursive;
 }
 
 section.board {

@@ -194,9 +194,10 @@ function init() {
 
 
 function render() {
-
   winnerMsg()
 }
+
+
 
 
 function colorChange(evt) {
@@ -213,16 +214,8 @@ function colorChange(evt) {
       evt.target.style.backgroundColor = "#f2f7f5"
     }
 })
+render()
 }
-
-// function addImg(evt) {
-//   if (turn === 1) {
-//     evt.target.innerHTML = '<img src="/assets/Untitled_Artwork.png">'
-//   } else if (turn === -1) {
-//     evt.target.innerHTML = '<img src="/assets/Untitled_Artwork 6.png">'
-//   }
-// }
-
 
 
 
@@ -285,18 +278,21 @@ function getWinner() {
 
 
 
-// function colorChange(evt) {
-//   board.forEach((item, idx) => {
-//       if (turn === 1) {
-//         evt.target.style.backgroundColor = "#faae2b"
-//         evt.target.innerHTML = '<img src="/assets/Untitled_Artwork.png">'
-//         messageEl.style.color = "#fa5246"
-//       } else if (turn === -1) {
-//         evt.target.style.backgroundColor = "#fa5246"
-//         evt.target.innerHTML = '<img src="/assets/Untitled_Artwork 6.png">' 
-//         messageEl.style.color = "#faae2b"
-//       } else {
-//       evt.target.style.backgroundColor = "#f2f7f5"
-//     }
-// })
-// }
+/*  problems to fix:
+
+- clicking an occupied space changes the color (but still returns the select space message)
+
+- need to make a tie option
+
+-need to make a reset button
+
+need to figure out animation for win event
+
+
+consider adding background color
+
+
+add the "grow" over toe if possible
+
+
+*/
