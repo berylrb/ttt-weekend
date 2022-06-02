@@ -36,5 +36,14 @@ div {
   text-align: center;
   vertical-align: middle;
   background-color: #F2F7F5;
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
 }
 
+
+
+div img {
+  object-fit: cover;
+  width: 100%
+}
