@@ -136,6 +136,17 @@
 
 /*-------------------------------- Constants --------------------------------*/
 
+const winningCombos = [
+  [sq0, sq1, sq2],
+  [sq3, sq4, sq5],
+  [sq6, sq7, sq8],
+  [sq0, sq3, sq6],
+  [sq1, sq4, sq7],
+  [sq2, sq5, sq8],
+  [sq0, sq4, sq8],
+  [sq2, sq4, sq6]
+]
+
 
 
 
@@ -147,11 +158,18 @@ let board, turn, winner
 
 
 /*------------------------ Cached Element References ------------------------*/
-const squareEls = document.querySelector(".board")
+const squareEls = [document.querySelector(".board")]
 const messageEl = document.querySelector("#message")
 
-
-
+const sq0 = document.querySelector('#sq0')
+const sq1 = document.querySelector('#sq1')
+const sq2 = document.querySelector('#sq2')
+const sq3 = document.querySelector('#sq3')
+const sq4 = document.querySelector('#sq4')
+const sq5 = document.querySelector('#sq5')
+const sq6 = document.querySelector('#sq6')
+const sq7 = document.querySelector('#sq7')
+const sq8 = document.querySelector('#sq8')
 
 
 /*----------------------------- Event Listeners -----------------------------*/
@@ -170,5 +188,38 @@ function init() {
 
 
 function render() {
-  
+  board.forEach((item, idx) => {
+    if (squareEls[idx] === 1) {
+      squareEls[idx].style.backgroundColor = '#faae2b'
+    } else if (squareEls[idx] === -1) {
+      squareEls[idx].style.backgroundColor = '#fa5246'
+    } else {
+      squareEls[idx].style.backgroundColor = '#f2f7f5'
+    }
+  })
+  winnerMsg()
+}
+
+function winnerMsg() {
+  if (winner === null) {
+    if (turn === 1) {
+      messageEl.textContent = 'Your turn, Player 1!'
+    } else if (turn === -1) {
+      messageEl.textContent = 'Your turn, Player 2!'
+    }
+  } else if (winner === 'T') {
+    messageEl.textContent = "Whoops! It's a tie"
+  } else {
+    if (turn === 1) {
+      messageEl.textContent = 'Player 1 wins!'
+    } else if (turn === -1) {
+      messageEl.textContent = 'Player 2 wins!'
+    }
+  }
+}
+
+function handleClick(evt) {
+  //player clicks square,
+  //add event listener
+  //
 }
