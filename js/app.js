@@ -136,18 +136,28 @@
 
 /*-------------------------------- Constants --------------------------------*/
 
+// const winningCombos = [
+//   [document.querySelector('#sq0'), document.querySelector('#sq1'), document.querySelector('#sq2')],
+//   [document.querySelector('#sq3'), document.querySelector('#sq4'), document.querySelector('#sq5')],
+//   [document.querySelector('#sq6'), document.querySelector('#sq7'), document.querySelector('#sq8')],
+//   [sq0, sq3, document.querySelector('#sq6')],
+//   [document.querySelector('#sq1'), document.querySelector('#sq4'), document.querySelector('#sq7')],
+//   [document.querySelector('#sq2'), sq5, document.querySelector('#sq8')],
+//   [document.querySelector('#sq0'), document.querySelector('#sq4'), document.querySelector('#sq8')],
+//   [document.querySelector('#sq2'), document.querySelector('#sq4'), document.querySelector('#sq6')]
+// ]
+
+
 const winningCombos = [
-  [document.querySelector('#sq0'), document.querySelector('#sq1'), document.querySelector('#sq2')],
-  [document.querySelector('#sq3'), document.querySelector('#sq4'), document.querySelector('#sq5')],
-  [document.querySelector('#sq6'), document.querySelector('#sq7'), document.querySelector('#sq8')],
-  [sq0, sq3, document.querySelector('#sq6')],
-  [document.querySelector('#sq1'), document.querySelector('#sq4'), document.querySelector('#sq7')],
-  [document.querySelector('#sq2'), sq5, document.querySelector('#sq8')],
-  [document.querySelector('#sq0'), document.querySelector('#sq4'), document.querySelector('#sq8')],
-  [document.querySelector('#sq2'), document.querySelector('#sq4'), document.querySelector('#sq6')]
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [6, 7, 8],
+  [0, 4, 8],
+  [2, 4, 6]
 ]
-
-
 
 
 
@@ -165,6 +175,10 @@ const messageEl = document.querySelector("#message")
 /*----------------------------- Event Listeners -----------------------------*/
 document.querySelector('body').addEventListener('click', handleClick)
 
+document.querySelector('.board').addEventListener('click', colorChange)
+
+document.querySelector('.board').addEventListener('click', addImg)
+
 
 /*-------------------------------- Functions --------------------------------*/
 init()
@@ -176,41 +190,68 @@ function init() {
   render()
 }
 
+  
+
 
 function render() {
-  let sqIndex
-  board.forEach((item, idx) => {
-    if (board[idx] === 1) {
-      squareEls[idx].style.backgroundColor = '#faae2b'
-    } else if (board[idx] === -1) {
-      squareEls[idx].style.backgroundColor = '#fa5246'
-    } else {
-      squareEls[idx].style.backgroundColor = '#f2f7f5'
-    }
-    console.log(idx, item)
-  })
+
   winnerMsg()
 }
+
+
+function colorChange(evt) {
+  board.forEach((item, idx) => {
+      if (turn === 1) {
+        evt.target.style.backgroundColor = "#faae2b"
+        messageEl.style.color = "#fa5246"
+      } else if (turn === -1) {
+        evt.target.style.backgroundColor = "#fa5246" 
+        messageEl.style.color = "#faae2b"
+      } else {
+      evt.target.style.backgroundColor = "#f2f7f5"
+    }
+})
+}
+
+function addImg(evt) {
+  if (turn === 1) {
+    evt.target.innerHTML = '<img src="https://i.imgur.com/FNYYLpD.png">'
+  } else if (turn === -1) {
+    evt.target.innerHTML = '<img src="https://i.imgur.com/xu281Il.png">'
+  }
+}
+
+
+
+
+
 
 function winnerMsg() {
   if (winner === null) {
     if (turn === 1) {
       messageEl.textContent = `Your turn, Player ${turn}!`
     } else if (turn === -1) {
-      messageEl.textContent = `Your turn, Player ${turn}!`
+      messageEl.textContent = `Your turn, Player 2!`
     }
-  } else if (winner === 'T') {
+  } else if (winner !== null && winner !== 'T') {
+    if (winner === -1) {
+      messageEl.textContent = 'Player 2 wins!'
+    } else if (winner === 'T') {
     messageEl.textContent = `Whoops! It's a tie`
   } else {
     messageEl.textContent = `Player ${winner} wins!`
-    }
+  } 
   }
+}
 
 
 function handleClick(evt) {
-  const sqIdx = squareEls.indexOf(evt)
+  let sqIdx = Number((evt.target.id).charAt(2))
+  console.log(sqIdx, board)
 
   if (board[sqIdx] !== null) {
+    messageEl.textContent = `Please choose an empty space <3`
+    messageEl.style.color = "#00473e"
     return
   }
 
@@ -219,12 +260,23 @@ function handleClick(evt) {
   }
 
   board[sqIdx] = turn
-  turn *= -1
+  turn = turn * -1
+
 
   getWinner()
   render()
 }
 
 function getWinner() {
-  
+  winningCombos.forEach((combo) => {
+    let sum = []
+    for (let i = 0; i < combo.length; i++) {
+      sum.push(board[combo[i]])
+      console.log(sum)
+    }
+    let sumReduce = Math.abs(sum.reduce((a, b) => a + b, 0))
+    if (sumReduce === 3) {
+      winner = sum[0]
+  }
+  })
 }
