@@ -1,85 +1,101 @@
-
-
 body {
-    /* background-color: gray; */
-	/* Use a system font, if none are available use an available sans-sarif   font */
-	font-family: 'Shrikhand', cursive;
-  font-size: 25px;
-	margin: 0;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: #f9e2e6;
-  color: #00473e;
+  /* background-color: gray; */
+/* Use a system font, if none are available use an available sans-sarif   font */
+font-family: 'Shrikhand', cursive;
+font-size: 25px;
+margin: 0;
+height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+background: #f9e2e6;
+color: #00473e;
 }
 
 section.heading h1 {
-  position: relative;
-  top: 80px;
+position: relative;
+top: 80px;
 }
 
 
 #message {
-  display: flex;
-  position: relative;
-  top: -70px;
-  margin: 0 0 35px 0;
-  font-size: 25px;
-  font-family: 'Chango', cursive;
+display: flex;
+position: relative;
+top: -70px;
+margin: 0 0 35px 0;
+font-size: 25px;
+font-family: 'Chango', cursive;
 }
 
 section.board {
-  top: -80px;
-  display: grid;
-  position: relative;
-  grid-template-rows: repeat(3, 15vmin);
-  grid-template-columns: repeat(3, 15vmin);
-  grid-gap: 0vmin;
-  border: 3px solid #00473e;
+top: -80px;
+display: grid;
+position: relative;
+grid-template-rows: repeat(3, 15vmin);
+grid-template-columns: repeat(3, 15vmin);
+grid-gap: 0vmin;
+border: 3px solid #00473e;
 }
 
-div {
-  top: -100px;
-  border: 3px solid #00473e;
-  font-size: 8vmin;
-  text-align: center;
-  vertical-align: middle;
-  background-color: #F2F7F5;
-  object-fit: contain;
-  max-width: 100%;
-  max-height: 100%;
+.board div {
+top: -100px;
+border: 3px solid #00473e;
+font-size: 8vmin;
+text-align: center;
+vertical-align: middle;
+background-color: #F2F7F5;
+object-fit: contain;
+max-width: 100%;
+max-height: 100%;
 }
 
 
 
 div img {
-  object-fit: cover;
-  width: 100%
+object-fit: cover;
+width: 100%
 }
 
 button {
-  margin-top: -60px;
-  background-color: #faae2b;
-  color: #00473e;
-  font-family: 'Chango', cursive;
-  font-size: 20px;
-  border-radius: 0%;
-  position: relative;
+background-color: #faae2b;
+color: #00473e;
+font-family: 'Chango', cursive;
+font-size: 20px;
+position: relative;
+bottom: 50px;
 }
 
 section.heading h2{
-  display: flex;
-  position: relative;
-  top: -85px;
-  left: 220px;
-  font-family: 'Patrick Hand SC', cursive;
-  font-size: 55px;
-  color: #fa5246;
-  transform-origin: 0 0;
-  transform: rotate(20deg);
+display: flex;
+position: relative;
+top: -85px;
+left: 220px;
+font-family: 'Patrick Hand SC', cursive;
+font-size: 55px;
+color: #fa5246;
+transform-origin: 0 0;
+transform: rotate(20deg);
+}
 
+
+#downcross {
+  position: relative;
+  left: -105px;
+  top: 47px;
+}
+
+
+#upcross {
+  position: relative;
+  left: -185px;
+  top: 47px;
+}
+
+
+#grass {
+  position: relative;
+  top: 10px;
 }
 /* 
 -- COLOR LIST -- 
@@ -90,5 +106,31 @@ section.heading h2{
 #3da9fc blue for background
 #f06157 lighter orange for drop bg
 #475d5b grey green 
-
 */
+
+/* 
+#animation1 {
+  position: absolute;
+  width: 110%;
+  right: -1px;
+  animation-duration: 4s;
+  animation-name: slidein;
+}
+
+#animation2 {
+  position: absolute;
+  animation-duration: 3s;
+  animation-name: slidein;
+}
+
+@keyframes slidein {
+  from {
+    margin-bottom: 10%;
+    width: 300%;
+  }
+
+  to {
+    margin-top: 40%;
+  }
+}
+ */

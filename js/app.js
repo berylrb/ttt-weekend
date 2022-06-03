@@ -197,11 +197,9 @@ function init() {
 
 function resetBoard(evt) {
   let tempImgs = document.querySelectorAll('#temp')
-
   tempImgs.forEach(img => {
     img.remove()
   })
-  
   init()
 }
 
@@ -225,10 +223,10 @@ function colorChange(idx) {
   for (i = 0; i < kids.length; i++) {
       if (board[i] === 1) {
         kids[i].style.backgroundColor = "#faae2b"
-        kids[i].innerHTML = '<img id="temp" src="/assets/Untitled_Artwork.png">'
+        kids[i].innerHTML = '<img id="temp" src="./assets/Untitled_Artwork.png">'
       } else if (board[i] === -1) {
         kids[i].style.backgroundColor = "#f06157"
-        kids[i].innerHTML = '<img id="temp" src = "/assets/blue raindrop.png">'
+        kids[i].innerHTML = '<img id="temp" src = "./assets/blue raindrop.png">'
 
 
         // grey raindrop kids[i].innerHTML = '<img src="/assets/Untitled_Artwork 6.png">'
@@ -311,6 +309,25 @@ function getWinner() {
 
 
 
+// function growGrass() {
+//   let elem = document.getElementById("animation1");
+//   elem.innerHTML = '<img id="grass" img src="./assets/grass.png">'
+//   let pos = 0;
+//   clearInterval(id);
+//   id = setInterval(frame, 10);
+//   function frame() {
+//     if (pos == 350) {
+//       clearInterval(id);
+//     } else {
+//       pos++;
+//       elem.style.top = pos + 'px';
+//       elem.style.left = pos + 'px';
+//     }
+//   }
+// }
+
+// growGrass()
+
 /*  problems to fix:
 
 
@@ -324,7 +341,9 @@ function getWinner() {
 how to add strike out on toe?
 
 
-
+make text flash three colors when a player wins?
+  - blue green orange for player 2
+  - yellow pink orange for player 1
 
 need to figure out animation for win event
 
