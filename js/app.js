@@ -156,7 +156,8 @@ const winningCombos = [
   [1, 4, 7],
   [6, 7, 8],
   [0, 4, 8],
-  [2, 4, 6]
+  [2, 4, 6],
+  [2, 5, 8]
 ]
 
 
@@ -168,16 +169,19 @@ let board, turn, winner
 
 
 /*------------------------ Cached Element References ------------------------*/
-const squareEls = [document.querySelector(".board")]
+const squareEls = document.querySelector(".board")
 const messageEl = document.querySelector("#message")
+const resetBttn = document.querySelector('button')
 
 
 /*----------------------------- Event Listeners -----------------------------*/
-document.querySelector('body').addEventListener('click', handleClick)
+// document.querySelector('.board').addEventListener('click', handleClick)
 
-document.querySelector('.board').addEventListener('click', colorChange)
+squareEls.addEventListener('click', handleClick)
 
-// document.querySelector('.board').addEventListener('click', addImg)
+// document.querySelector('.board').addEventListener('click', colorChange)
+
+// resetBttn.addEventListener('click', resetBoard)
 
 
 /*-------------------------------- Functions --------------------------------*/
@@ -187,34 +191,40 @@ function init() {
   board = [null, null, null, null, null, null, null, null, null]
   turn = 1
   winner = null
+  resetBttn.setAttribute('hidden', true)
   render()
 }
 
-  
 
 
-function render() {
+
+function render(idx) {
+  if (board.includes(1) || board.includes(-1)) {
+    resetBttn.removeAttribute('hidden')
+  }
+
+  colorChange(idx)
+
   winnerMsg()
 }
 
 
 
 
-function colorChange(evt) {
-  board.forEach((item, idx) => {
-      if (turn === 1) {
-        evt.target.style.backgroundColor = "#faae2b"
-        evt.target.innerHTML = '<img src="/assets/Untitled_Artwork.png">'
-        messageEl.style.color = "#fa5246"
-      } else if (turn === -1) {
-        evt.target.style.backgroundColor = "#fa5246"
-        evt.target.innerHTML = '<img src="/assets/Untitled_Artwork 6.png">' 
-        messageEl.style.color = "#faae2b"
+function colorChange(idx) {
+  let kids = squareEls.children
+  console.log('hi', kids.length)
+  for (i = 0; i < kids.length; i++) {
+      if (board[i] === 1) {
+        kids[i].style.backgroundColor = "#faae2b"
+        kids[i].innerHTML = '<img src="/assets/Untitled_Artwork.png">'
+      } else if (board[i] === -1) {
+        kids[i].style.backgroundColor = "#3da9fc"
+        kids[i].innerHTML = '<img src="/assets/Untitled_Artwork 6.png">' 
       } else {
-      evt.target.style.backgroundColor = "#f2f7f5"
+        kids[i].style.backgroundColor = "#f2f7f5"
     }
-})
-render()
+  }
 }
 
 
@@ -225,18 +235,21 @@ function winnerMsg() {
   if (winner === null) {
     if (turn === 1) {
       messageEl.textContent = `Your turn, Player ${turn}!`
+      messageEl.style.color = "#3da9fc"
     } else if (turn === -1) {
       messageEl.textContent = `Your turn, Player 2!`
+      messageEl.style.color = "#fa5246"
     }
   } else if (winner !== null && winner !== 'T') {
     if (winner === -1) {
       messageEl.textContent = 'Player 2 wins!'
-    } else if (winner === 'T') {
-    messageEl.textContent = `Whoops! It's a tie`
-  } else {
+    }  else {
     messageEl.textContent = `Player ${winner} wins!`
   } 
-  }
+  } else if (winner === 'T') {
+    messageEl.textContent = `Whoops! It's a tie  ¯|_(ツ)_|¯ `
+    messageEl.style.color = "#ffa8ba"
+}
 }
 
 
@@ -254,13 +267,18 @@ function handleClick(evt) {
     return
   }
 
+
   board[sqIdx] = turn
   turn = turn * -1
 
 
   getWinner()
-  render()
+  render(sqIdx)
 }
+
+
+
+
 
 function getWinner() {
   winningCombos.forEach((combo) => {
@@ -272,24 +290,26 @@ function getWinner() {
     let sumReduce = Math.abs(sum.reduce((a, b) => a + b, 0))
     if (sumReduce === 3) {
       winner = sum[0]
-  }
+  } 
   })
+  if (winner === null && board.includes(null) === false) {
+    winner = 'T'
+  }
+
 }
 
 
 
 /*  problems to fix:
 
-- clicking an occupied space changes the color (but still returns the select space message)
 
-- need to make a tie option
+
 
 -need to make a reset button
 
 need to figure out animation for win event
 
 
-consider adding background color
 
 
 add the "grow" over toe if possible

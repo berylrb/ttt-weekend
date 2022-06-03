@@ -11,14 +11,14 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #F2F7F5;
+  background: #f9e2e6;
   color: #00473e;
 }
 
 #message {
   margin: 0 0 35px 0;
   font-size: 25px;
-  font-family: 'Abril Fatface', cursive;
+  font-family: 'Chango', cursive;
 }
 
 section.board {
@@ -28,11 +28,11 @@ section.board {
   grid-template-rows: repeat(3, 10vmin);
   grid-template-columns: repeat(3, 10vmin);
   grid-gap: 0vmin;
-  border: 3px solid black;
+  border: 3px solid #00473e;
 }
 
 div {
-  border: 3px solid black;
+  border: 3px solid #00473e;
   font-size: 8vmin;
   text-align: center;
   vertical-align: middle;
@@ -48,3 +48,19 @@ div img {
   object-fit: cover;
   width: 100%
 }
+
+button {
+  margin-top: 20px;
+  background-color: #faae2b;
+  color: #094067;
+  font-family: 'Chango', cursive;
+  font-size: 20px;
+  border-radius: 0%;
+}
+
+
+/* #094067  dark blue
+#00473e dark green
+#faae2b yellow
+
+*/
