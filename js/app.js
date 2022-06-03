@@ -196,12 +196,14 @@ function init() {
 }
 
 function resetBoard(evt) {
-  // let children = squareEls.children
-  // for (i = 0; i < children.length; i++) {
-  //   children.innerHTML = ""
-  // }
-  location.reload()
-  // init()
+  let children = squareEls.children
+  for (let i = 0; i < children.length; i++) {
+    for (let j = 0; j < children[i].length; j++) {
+    children[i][j].children[i].removeChild(children[i][j])
+  }
+}
+
+  init()
 }
 
 
