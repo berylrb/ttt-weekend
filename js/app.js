@@ -196,12 +196,8 @@ function init() {
 }
 
 function resetBoard(evt) {
-  let children = squareEls.children
-  for (let i = 0; i < children.length; i++) {
-    for (let j = 0; j < children[i].length; j++) {
-    children[i][j].children[i].removeChild(children[i][j])
-  }
-}
+  document.getElementById('temp').remove()
+
 
   init()
 }
@@ -226,10 +222,10 @@ function colorChange(idx) {
   for (i = 0; i < kids.length; i++) {
       if (board[i] === 1) {
         kids[i].style.backgroundColor = "#faae2b"
-        kids[i].innerHTML = '<img src="/assets/Untitled_Artwork.png">'
+        kids[i].innerHTML = '<img id="temp" src="/assets/Untitled_Artwork.png">'
       } else if (board[i] === -1) {
         kids[i].style.backgroundColor = "#f06157"
-        kids[i].innerHTML = '<img src = "/assets/blue raindrop.png">'
+        kids[i].innerHTML = '<img id="temp" src = "/assets/blue raindrop.png">'
 
 
         // grey raindrop kids[i].innerHTML = '<img src="/assets/Untitled_Artwork 6.png">'
