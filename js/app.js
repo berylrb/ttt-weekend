@@ -252,8 +252,11 @@ function winnerMsg() {
   } else if (winner !== null && winner !== 'T') {
     if (winner === -1) {
       messageEl.textContent = 'Player 2 wins!'
+      flashText()
+
     }  else {
     messageEl.textContent = `Player ${winner} wins!`
+    flashText()
   } 
   } else if (winner === 'T') {
     messageEl.textContent = `Whoops! It's a tie  ¯|_(ツ)_|¯ `
@@ -261,6 +264,7 @@ function winnerMsg() {
 }
 }
 
+// function flashText() {
 
 function handleClick(evt) {
   let sqIdx = Number((evt.target.id).charAt(2))
@@ -346,6 +350,11 @@ make text flash three colors when a player wins?
   - yellow pink orange for player 1
 
 need to figure out animation for win event
+
+
+flash colors of winning rows
+
+day / night mode depending on time
 
 
 
