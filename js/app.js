@@ -196,11 +196,12 @@ function init() {
 }
 
 function resetBoard(evt) {
-  let children = squareEls.children
-  for (i = 0; i < children.length; i++) {
-    children.innerHTML = null
-  }
-  init()
+  // let children = squareEls.children
+  // for (i = 0; i < children.length; i++) {
+  //   children.innerHTML = ""
+  // }
+  location.reload()
+  // init()
 }
 
 
@@ -315,6 +316,14 @@ function getWinner() {
 
 
 -need to make a reset button
+  ---- added the button but I don't like that it messes with the formatting when it pops in. how to make locations static?
+
+
+
+how to add strike out on toe?
+
+
+
 
 need to figure out animation for win event
 

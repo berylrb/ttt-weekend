@@ -15,23 +15,33 @@ body {
   color: #00473e;
 }
 
+section.heading h1 {
+  position: relative;
+  top: 80px;
+}
+
+
 #message {
+  display: flex;
+  position: relative;
+  top: -70px;
   margin: 0 0 35px 0;
   font-size: 25px;
   font-family: 'Chango', cursive;
 }
 
 section.board {
+  top: -80px;
   display: grid;
-  /* align-items: center;
-  justify-content: center; */
-  grid-template-rows: repeat(3, 10vmin);
-  grid-template-columns: repeat(3, 10vmin);
+  position: relative;
+  grid-template-rows: repeat(3, 15vmin);
+  grid-template-columns: repeat(3, 15vmin);
   grid-gap: 0vmin;
   border: 3px solid #00473e;
 }
 
 div {
+  top: -100px;
   border: 3px solid #00473e;
   font-size: 8vmin;
   text-align: center;
@@ -50,15 +60,27 @@ div img {
 }
 
 button {
-  margin-top: 20px;
+  margin-top: -60px;
   background-color: #faae2b;
   color: #00473e;
   font-family: 'Chango', cursive;
   font-size: 20px;
   border-radius: 0%;
+  position: relative;
 }
 
+section.heading h2{
+  display: flex;
+  position: relative;
+  top: -85px;
+  left: 220px;
+  font-family: 'Patrick Hand SC', cursive;
+  font-size: 55px;
+  color: #fa5246;
+  transform-origin: 0 0;
+  transform: rotate(20deg);
 
+}
 /* 
 -- COLOR LIST -- 
 #094067  dark blue
