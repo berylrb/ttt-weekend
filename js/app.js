@@ -196,9 +196,12 @@ function init() {
 }
 
 function resetBoard(evt) {
-  document.getElementById('temp').remove()
+  let tempImgs = document.querySelectorAll('#temp')
 
-
+  tempImgs.forEach(img => {
+    img.remove()
+  })
+  
   init()
 }
 
