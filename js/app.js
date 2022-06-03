@@ -181,7 +181,7 @@ squareEls.addEventListener('click', handleClick)
 
 // document.querySelector('.board').addEventListener('click', colorChange)
 
-// resetBttn.addEventListener('click', resetBoard)
+resetBttn.addEventListener('click', resetBoard)
 
 
 /*-------------------------------- Functions --------------------------------*/
@@ -195,7 +195,13 @@ function init() {
   render()
 }
 
-
+function resetBoard(evt) {
+  let children = squareEls.children
+  for (i = 0; i < children.length; i++) {
+    children.innerHTML = null
+  }
+  init()
+}
 
 
 function render(idx) {
@@ -219,8 +225,11 @@ function colorChange(idx) {
         kids[i].style.backgroundColor = "#faae2b"
         kids[i].innerHTML = '<img src="/assets/Untitled_Artwork.png">'
       } else if (board[i] === -1) {
-        kids[i].style.backgroundColor = "#3da9fc"
-        kids[i].innerHTML = '<img src="/assets/Untitled_Artwork 6.png">' 
+        kids[i].style.backgroundColor = "#f06157"
+        kids[i].innerHTML = '<img src = "/assets/blue raindrop.png">'
+
+
+        // grey raindrop kids[i].innerHTML = '<img src="/assets/Untitled_Artwork 6.png">'
       } else {
         kids[i].style.backgroundColor = "#f2f7f5"
     }
@@ -235,7 +244,7 @@ function winnerMsg() {
   if (winner === null) {
     if (turn === 1) {
       messageEl.textContent = `Your turn, Player ${turn}!`
-      messageEl.style.color = "#3da9fc"
+      messageEl.style.color = "#faae2b"
     } else if (turn === -1) {
       messageEl.textContent = `Your turn, Player 2!`
       messageEl.style.color = "#fa5246"
@@ -248,7 +257,7 @@ function winnerMsg() {
   } 
   } else if (winner === 'T') {
     messageEl.textContent = `Whoops! It's a tie  ¯|_(ツ)_|¯ `
-    messageEl.style.color = "#ffa8ba"
+    messageEl.style.color = "#475d5b"
 }
 }
 

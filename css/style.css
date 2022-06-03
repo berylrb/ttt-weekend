@@ -52,15 +52,21 @@ div img {
 button {
   margin-top: 20px;
   background-color: #faae2b;
-  color: #094067;
+  color: #00473e;
   font-family: 'Chango', cursive;
   font-size: 20px;
   border-radius: 0%;
 }
 
 
-/* #094067  dark blue
+/* 
+-- COLOR LIST -- 
+#094067  dark blue
 #00473e dark green
 #faae2b yellow
+#fa5246 orange
+#3da9fc blue for background
+#f06157 lighter orange for drop bg
+#475d5b grey green 
 
 */
