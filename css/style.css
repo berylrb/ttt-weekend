@@ -1,6 +1,4 @@
 body {
-  /* background-color: gray; */
-/* Use a system font, if none are available use an available sans-sarif   font */
 font-family: 'Shrikhand', cursive;
 font-size: 25px;
 margin: 0;
@@ -15,14 +13,14 @@ color: #00473e;
 
 section.heading h1 {
 position: relative;
-top: 80px;
+top: 100px;
 }
 
 
 #message {
 display: flex;
 position: relative;
-top: -70px;
+top: -65px;
 margin: 0 0 35px 0;
 font-size: 23px;
 font-family: 'Chango', cursive;
@@ -60,12 +58,18 @@ object-fit: cover;
 width: 100%
 }
 
+#button-container {
+  height: 44.53px;
+  max-height: 44.53px;
+  min-height: 44.53px;
+}
+
 button {
 background-color: #faae2b;
 color: #00473e;
 font-family: 'Chango', cursive;
 font-size: 20px;
-position: relative;
+/* position: relative; */
 /* bottom: 50px; */
 border-radius: 12px;
 padding: 8px;
@@ -87,7 +91,7 @@ button:active {
 section.heading h2{
 display: flex;
 position: relative;
-top: -85px;
+top: -65px;
 left: 220px;
 font-family: 'Patrick Hand SC', cursive;
 font-size: 55px;
@@ -113,8 +117,8 @@ transform: rotate(20deg);
 
 #grass {
   position: relative;
-  bottom: 10px;
   object-fit: cover;
+  display: block;
 }
 
 /* 
