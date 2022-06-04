@@ -67,6 +67,9 @@ font-family: 'Chango', cursive;
 font-size: 20px;
 position: relative;
 bottom: 50px;
+border-radius: 12px;
+padding: 8px;
+box-shadow: 1px 4px #475d5b
 }
 
 button:hover {
@@ -75,7 +78,7 @@ button:hover {
 }
 
 button:active {
-  box-shadow: 1px 3px #094067;
+  box-shadow: 1px 2px #094067;
   transform: translateY(4px);
   background-color: #fd7f76;
   
