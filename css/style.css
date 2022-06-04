@@ -35,6 +35,8 @@ grid-template-rows: repeat(3, 15vmin);
 grid-template-columns: repeat(3, 15vmin);
 grid-gap: 0vmin;
 border: 3px solid #00473e;
+margin-bottom: -50px;
+margin-top: 10px;
 }
 
 
@@ -118,7 +120,6 @@ transform: rotate(20deg);
 #grass {
   position: relative;
   object-fit: cover;
-  display: block;
 }
 
 /* 
