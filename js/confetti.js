@@ -1,50 +1,109 @@
-var maxParticleCount = 150; //set max confetti count
-var particleSpeed = 2; //set the particle animation speed
-var startConfetti; //call to start confetti animation
-var stopConfetti; //call to stop adding confetti
-var toggleConfetti; //call to start or stop the confetti animation depending on whether it's already running
-var removeConfetti; //call to stop the confetti animation and remove all confetti immediately
+var confetti = {
+	maxCount: 200,		//set max confetti count
+	speed: 5,			//set the particle animation speed
+	frameInterval: 13,	//the confetti animation frame interval in milliseconds
+	alpha: 1.0,			//the alpha opacity of the confetti (between 0 and 1, where 1 is opaque and 0 is invisible)
+	gradient: false,	//whether to use gradients for the confetti particles
+	start: null,		//call to start confetti animation (with optional timeout in milliseconds, and optional min and max random confetti count)
+	stop: null,			//call to stop adding confetti
+	toggle: null,		//call to start or stop the confetti animation depending on whether it's already running
+	pause: null,		//call to freeze confetti animation
+	resume: null,		//call to unfreeze confetti animation
+	togglePause: null,	//call to toggle whether the confetti animation is paused
+	remove: null,		//call to stop the confetti animation and remove all confetti immediately
+	isPaused: null,		//call and returns true or false depending on whether the confetti animation is paused
+	isRunning: null		//call and returns true or false depending on whether the animation is running
+};
 
 (function() {
-	startConfetti = startConfettiInner;
-	stopConfetti = stopConfettiInner;
-	toggleConfetti = toggleConfettiInner;
-	removeConfetti = removeConfettiInner;
-	var colors = ["DodgerBlue", "#00473e", "Gold", "Pink", "SlateBlue", "LightBlue", "#fa5246", "#faae2b", "#ffa8ba", "SandyBrown", "Chocolate", "#f2f7f5"]
+	confetti.start = startConfetti;
+	confetti.stop = stopConfetti;
+	confetti.toggle = toggleConfetti;
+	confetti.pause = pauseConfetti;
+	confetti.resume = resumeConfetti;
+	confetti.togglePause = toggleConfettiPause;
+	confetti.isPaused = isConfettiPaused;
+	confetti.remove = removeConfetti;
+	confetti.isRunning = isConfettiRunning;
+	var supportsAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame;
+	var colors = ["rgba(63,0,255,", "rgba(182,208,226,", "rgba(70,130,180,", "rgba(96,130,182,", "rgba(182,208,226,", "#rgba(135,206,235,", "rgba(25,25,112,", "rgba(63,0,255,", "rgba(115,147,179,", "rgba(8,143,143,", "rgba(0,71,171,", "rgba(137,207,240,"];
 	var streamingConfetti = false;
 	var animationTimer = null;
+	var pause = false;
+	var lastFrameTime = Date.now();
 	var particles = [];
 	var waveAngle = 0;
-	
+	var context = null;
+
 	function resetParticle(particle, width, height) {
-		particle.color = colors[(Math.random() * colors.length) | 0];
-		particle.x = Math.random() * width;
+		particle.color = colors[(Math.random() * colors.length) | 0] + (confetti.alpha + ")");
+		particle.color2 = colors[(Math.random() * colors.length) | 0] + (confetti.alpha + ")");
+		particle.x = Math.random() * width - 2;
 		particle.y = Math.random() * height - height;
-		particle.diameter = Math.random() * 10 + 5;
-		particle.tilt = Math.random() * 10 - 10;
-		particle.tiltAngleIncrement = Math.random() * 0.07 + 0.05;
+		particle.diameter = Math.random() * 2 + 3;
+		particle.tilt = Math.random() * 2 - 1;
+		particle.tiltAngleIncrement = Math.random() * 0.05 + 0.03;
 		particle.tiltAngle = 0;
 		return particle;
 	}
 
-	function startConfettiInner() {
+	function toggleConfettiPause() {
+		if (pause)
+			resumeConfetti();
+		else
+			pauseConfetti();
+	}
+
+	function isConfettiPaused() {
+		return pause;
+	}
+
+	function pauseConfetti() {
+		pause = true;
+	}
+
+	function resumeConfetti() {
+		pause = false;
+		runAnimation();
+	}
+
+	function runAnimation() {
+		if (pause)
+			return;
+		else if (particles.length === 0) {
+			context.clearRect(0, 0, window.innerWidth, window.innerHeight);
+			animationTimer = null;
+		} else {
+			var now = Date.now();
+			var delta = now - lastFrameTime;
+			if (!supportsAnimationFrame || delta > confetti.frameInterval) {
+				context.clearRect(0, 0, window.innerWidth, window.innerHeight);
+				updateParticles();
+				drawParticles(context);
+				lastFrameTime = now - (delta % confetti.frameInterval);
+			}
+			animationTimer = requestAnimationFrame(runAnimation);
+		}
+	}
+
+	function startConfetti(timeout, min, max) {
 		var width = window.innerWidth;
 		var height = window.innerHeight;
-		window.requestAnimFrame = (function() {
+		window.requestAnimationFrame = (function() {
 			return window.requestAnimationFrame ||
 				window.webkitRequestAnimationFrame ||
 				window.mozRequestAnimationFrame ||
 				window.oRequestAnimationFrame ||
 				window.msRequestAnimationFrame ||
 				function (callback) {
-					return window.setTimeout(callback, 16.6666667);
+					return window.setTimeout(callback, confetti.frameInterval);
 				};
 		})();
 		var canvas = document.getElementById("confetti-canvas");
 		if (canvas === null) {
 			canvas = document.createElement("canvas");
 			canvas.setAttribute("id", "confetti-canvas");
-			canvas.setAttribute("style", "display:block;z-index:999999;pointer-events:none");
+			canvas.setAttribute("style", "display:block;z-index:999999;pointer-events:none;position:absolute;top:0");
 			document.body.appendChild(canvas);
 			canvas.width = width;
 			canvas.height = height;
@@ -52,52 +111,75 @@ var removeConfetti; //call to stop the confetti animation and remove all confett
 				canvas.width = window.innerWidth;
 				canvas.height = window.innerHeight;
 			}, true);
+			context = canvas.getContext("2d");
 		}
-		var context = canvas.getContext("2d");
-		while (particles.length < maxParticleCount)
+		var count = confetti.maxCount;
+		if (min) {
+			if (max) {
+				if (min == max)
+					count = particles.length + max;
+				else {
+					if (min > max) {
+						var temp = min;
+						min = max;
+						max = temp;
+					}
+					count = particles.length + ((Math.random() * (max - min) + min) | 0);
+				}
+			} else
+				count = particles.length + min;
+		} else if (max)
+			count = particles.length + max;
+		while (particles.length < count)
 			particles.push(resetParticle({}, width, height));
 		streamingConfetti = true;
-		if (animationTimer === null) {
-			(function runAnimation() {
-				context.clearRect(0, 0, window.innerWidth, window.innerHeight);
-				if (particles.length === 0)
-					animationTimer = null;
-				else {
-					updateParticles();
-					drawParticles(context);
-					animationTimer = requestAnimFrame(runAnimation);
-				}
-			})();
+		pause = false;
+		runAnimation();
+		if (timeout) {
+			window.setTimeout(stopConfetti, timeout);
 		}
 	}
 
-	function stopConfettiInner() {
+	function stopConfetti() {
 		streamingConfetti = false;
 	}
 
-	function removeConfettiInner() {
-		stopConfetti();
+	function removeConfetti() {
+		stop();
+		pause = false;
 		particles = [];
 	}
 
-	function toggleConfettiInner() {
+	function toggleConfetti() {
 		if (streamingConfetti)
-			stopConfettiInner();
+			stopConfetti();
 		else
-			startConfettiInner();
+			startConfetti();
+	}
+	
+	function isConfettiRunning() {
+		return streamingConfetti;
 	}
 
 	function drawParticles(context) {
 		var particle;
-		var x;
+		var x, y, x2, y2;
 		for (var i = 0; i < particles.length; i++) {
 			particle = particles[i];
 			context.beginPath();
 			context.lineWidth = particle.diameter;
-			context.strokeStyle = particle.color;
-			x = particle.x + particle.tilt;
-			context.moveTo(x + particle.diameter / 2, particle.y);
-			context.lineTo(x, particle.y + particle.tilt + particle.diameter / 2);
+			x2 = particle.x + particle.tilt;
+			x = x2 + particle.diameter / 2;
+			y2 = particle.y + particle.tilt + particle.diameter / 2;
+			if (confetti.gradient) {
+				var gradient = context.createLinearGradient(x, particle.y, x2, y2);
+				gradient.addColorStop("0", particle.color);
+				gradient.addColorStop("1.0", particle.color2);
+				context.strokeStyle = gradient;
+			} else
+				context.strokeStyle = particle.color;
+			context.moveTo(x, particle.y);
+			context.lineTo(x2, y2);
 			context.stroke();
 		}
 	}
@@ -106,7 +188,7 @@ var removeConfetti; //call to stop the confetti animation and remove all confett
 		var width = window.innerWidth;
 		var height = window.innerHeight;
 		var particle;
-		waveAngle += 0.01;
+		waveAngle += 0.0;
 		for (var i = 0; i < particles.length; i++) {
 			particle = particles[i];
 			if (!streamingConfetti && particle.y < -15)
@@ -114,11 +196,11 @@ var removeConfetti; //call to stop the confetti animation and remove all confett
 			else {
 				particle.tiltAngle += particle.tiltAngleIncrement;
 				particle.x += Math.sin(waveAngle);
-				particle.y += (Math.cos(waveAngle) + particle.diameter + particleSpeed) * 0.5;
+				particle.y += (Math.cos(waveAngle) + particle.diameter + confetti.speed) * 0.3;
 				particle.tilt = Math.sin(particle.tiltAngle) * 15;
 			}
 			if (particle.x > width + 20 || particle.x < -20 || particle.y > height) {
-				if (streamingConfetti && particles.length <= maxParticleCount)
+				if (streamingConfetti && particles.length <= confetti.maxCount)
 					resetParticle(particle, width, height);
 				else {
 					particles.splice(i, 1);
