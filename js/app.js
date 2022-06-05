@@ -47,6 +47,7 @@ function init() {
   turn = 1
   winner = null
   resetBttn.setAttribute('hidden', true)
+  document.getElementById('grass').innerHTML = '<img src="./assets/grass.png">'
   render()
 }
 
@@ -117,6 +118,7 @@ function colorChange(idx) {
 // winner and game play messages --> change message content and color according to player turn and winner variable contents. Also starts confetti rain when someone wins.
 
 
+
 function winnerMsg() {
   if (winner === null) {
 
@@ -130,14 +132,17 @@ function winnerMsg() {
     }
 
   } else if (winner !== null && winner !== 'T') {
-
+ 
     if (winner === -1) {
       messageEl.textContent = 'Player 2 wins!'
       confetti.start(1500)
+      document.getElementById('grass').innerHTML = '<img src="/assets/animated-flower.png"/>'
+      
 
     }  else {
     messageEl.textContent = `Player ${winner} wins!`
     confetti.start(2500)
+    
   } 
 
   } else if (winner === 'T') {
@@ -146,7 +151,6 @@ function winnerMsg() {
     messageEl.style.color = "#475d5b"
 }
 }
-
 
 
 
@@ -200,26 +204,6 @@ function getWinner() {
 
 }
 
-
-
-// function growGrass() {
-//   let elem = document.getElementById("animation1");
-//   elem.innerHTML = '<img id="grass" img src="./assets/grass.png">'
-//   let pos = 0;
-//   clearInterval(id);
-//   id = setInterval(frame, 10);
-//   function frame() {
-//     if (pos == 350) {
-//       clearInterval(id);
-//     } else {
-//       pos++;
-//       elem.style.top = pos + 'px';
-//       elem.style.left = pos + 'px';
-//     }
-//   }
-// }
-
-// growGrass()
 
 /*  problems to fix:
 

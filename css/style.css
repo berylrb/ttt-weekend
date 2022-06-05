@@ -1,161 +1,189 @@
 body {
-font-family: 'Shrikhand', cursive;
-font-size: 25px;
-margin: 0;
-height: 100vh;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-background: #f9e2e6;
-color: #00473e;
-}
+  font-family: 'Shrikhand', cursive;
+  font-size: 25px;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f9e2e6;
+  color: #00473e;
+  }
 
-section.heading h1 {
-position: relative;
-top: 100px;
-}
-
-
-#message {
-display: flex;
-position: relative;
-top: -65px;
-margin: 0 0 35px 0;
-font-size: 23px;
-font-family: 'Chango', cursive;
-text-align: center;
-}
-
-section.board {
-top: -80px;
-display: grid;
-position: relative;
-grid-template-rows: repeat(3, 15vmin);
-grid-template-columns: repeat(3, 15vmin);
-grid-gap: 0vmin;
-border: 3px solid #00473e;
-margin-bottom: -50px;
-margin-top: 10px;
-}
-
-
-.board div {
-top: -100px;
-border: 3px solid #00473e;
-font-size: 8vmin;
-text-align: center;
-vertical-align: middle;
-/* background-color: #F2F7F5; */
-object-fit: contain;
-max-width: 100%;
-max-height: 100%;
-}
-
-
-
-
-div img {
-object-fit: cover;
-width: 100%
-}
-
-#button-container {
-  height: 44.53px;
-  max-height: 44.53px;
-  min-height: 44.53px;
-}
-
-button {
-background-color: #faae2b;
-color: #00473e;
-font-family: 'Chango', cursive;
-font-size: 20px;
-/* position: relative; */
-/* bottom: 50px; */
-border-radius: 12px;
-padding: 8px;
-box-shadow: 1px 4px #475d5b
-}
-
-button:hover {
-  background-color: #f86e64 ;
-  color: #a9d6f9;
-}
-
-button:active {
-  box-shadow: 1px 2px #094067;
-  transform: translateY(4px);
-  background-color: #fd7f76;
+  section.heading {
+    margin-top:100px;
+  }
   
-}
-
-section.heading h2{
-display: flex;
-position: relative;
-top: -65px;
-left: 220px;
-font-family: 'Patrick Hand SC', cursive;
-font-size: 55px;
-color: #fa5246;
-transform-origin: 0 0;
-transform: rotate(20deg);
-}
-
-
-#downcross {
+  section.heading h1 {
   position: relative;
-  left: -105px;
-  top: 47px;
-}
-
-
-#upcross {
+  top: 100px;
+  }
+  
+  
+  #message {
+  display: flex;
   position: relative;
-  left: -185px;
-  top: 47px;
-}
-
-
-#grass {
+  top: -65px;
+  margin: 0 0 35px 0;
+  font-size: 23px;
+  font-family: 'Chango', cursive;
+  text-align: center;
+  }
+  
+  section.board {
+  top: -60px;
+  display: grid;
+  grid-template-rows: repeat(3, 15vmin);
+  grid-template-columns: repeat(3, 15vmin);
+  grid-gap: 0vmin;
+  border: 3px solid #00473e;
+  margin-bottom: -50px;
+  margin-top: 10px;
   position: relative;
+  }
+  
+  
+  .board div {
+  top: -60px;
+  border: 3px solid #00473e;
+  font-size: 8vmin;
+  text-align: center;
+  vertical-align: middle;
+  /* background-color: #F2F7F5; */
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+  z-index: 209;
+  }
+  
+  
+  
+  
+  div img {
   object-fit: cover;
-}
+  width: 100%;
+  position: relative;
+  }
+  
+  #button-container {
+    height: 44.53px;
+    max-height: 44.53px;
+    min-height: 44.53px;
+  }
+  
+  button {
+  background-color: #faae2b;
+  color: #00473e;
+  font-family: 'Chango', cursive;
+  font-size: 20px;
+  /* position: relative; */
+  /* bottom: 50px; */
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 1px 4px #475d5b
+  }
+  
+  button:hover {
+    background-color: #f86e64 ;
+    color: #a9d6f9;
+  }
+  
+  button:active {
+    box-shadow: 1px 2px #094067;
+    transform: translateY(4px);
+    background-color: #fd7f76;
+    
+  }
+  
+  section.heading h2{
+  display: flex;
+  position: relative;
+  top: -65px;
+  left: 220px;
+  font-family: 'Patrick Hand SC', cursive;
+  font-size: 55px;
+  color: #fa5246;
+  transform-origin: 0 0;
+  transform: rotate(20deg);
+  }
+  
+  
+  #downcross {
+    position: relative;
+    left: -105px;
+    top: 47px;
+  }
+  
+  
+  #upcross {
+    position: relative;
+    left: -185px;
+    top: 47px;
+  }
+  
+  
+  /* #animationContainer {
 
-/* 
--- COLOR LIST -- 
-#094067  dark blue
-#00473e dark green
-#faae2b yellow
-#fa5246 orange
-#3da9fc blue for background
-#f06157 lighter orange for drop bg
-#475d5b grey green 
-*/
+  } */
 
-/* 
-#animation1 {
-  position: absolute;
-  width: 110%;
-  right: -1px;
-  animation-duration: 4s;
-  animation-name: slidein;
-}
 
-#animation2 {
-  position: absolute;
-  animation-duration: 3s;
-  animation-name: slidein;
-}
-
-@keyframes slidein {
-  from {
-    margin-bottom: 10%;
-    width: 300%;
+  #grass{
+    position: relative;
+    z-index: -1
   }
 
-  to {
-    margin-top: 40%;
-  }
+.sprite {
+  display: flex;
+  object-fit: cover;
+  width: auto;
+  max-height: auto;
+  position: absolute;
+  animation: playY steps(48) infinite;
+
 }
- */
+
+@keyframes playY {
+  from { background-position-y: 0px;}
+  to { background-position-y: -365px;}
+}
+
+
+  
+  /* 
+  -- COLOR LIST -- 
+  #094067  dark blue
+  #00473e dark green
+  #faae2b yellow
+  #fa5246 orange
+  #3da9fc blue for background
+  #f06157 lighter orange for drop bg
+  #475d5b grey green 
+  */
+  
+  /* 
+  #animation1 {
+    position: absolute;
+    width: 110%;
+    right: -1px;
+    animation-duration: 4s;
+    animation-name: slidein;
+  }
+  
+  #animation2 {
+    position: absolute;
+    animation-duration: 3s;
+    animation-name: slidein;
+  }
+  
+  @keyframes slidein {
+    from {
+      margin-bottom: 10%;
+      width: 300%;
+    }
+  
+    to {
+      margin-top: 40%;
+    }
+  }
+   */
