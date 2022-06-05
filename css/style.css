@@ -2,7 +2,7 @@ body {
   font-family: 'Shrikhand', cursive;
   font-size: 25px;
   margin: 0;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,6 +13,7 @@ body {
 
   section.heading {
     margin-top:100px;
+    position: relative;
   }
   
   section.heading h1 {
@@ -70,6 +71,8 @@ body {
     height: 44.53px;
     max-height: 44.53px;
     min-height: 44.53px;
+    position: relative;
+    z-index: 4;
   }
   
   button {
@@ -123,14 +126,17 @@ body {
   }
   
   
-  /* #animationContainer {
-
-  } */
+  #animationContainer {
+  max-height: 120px;
+  position: relative;
+  display: flex;
+  margin-top: auto;
+  }
 
 
   #grass{
+    z-index: -1;
     position: relative;
-    z-index: -1
   }
 
 .sprite {
@@ -138,9 +144,8 @@ body {
   object-fit: cover;
   width: auto;
   max-height: auto;
-  position: absolute;
+  position: relative;
   animation: playY steps(48) infinite;
-
 }
 
 @keyframes playY {

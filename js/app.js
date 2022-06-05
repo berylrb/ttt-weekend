@@ -47,6 +47,7 @@ function init() {
   turn = 1
   winner = null
   resetBttn.setAttribute('hidden', true)
+  // document.getElementById('grass').classList.remove("sprite")
   document.getElementById('grass').innerHTML = '<img src="./assets/grass.png">'
   render()
 }
@@ -66,7 +67,7 @@ function resetBoard(evt) {
   tempImgs.forEach(img => {
     img.remove()
   })
-
+  location.reload() // unfortunately the only way to refresh the animation
   init()
 }
 
@@ -137,13 +138,14 @@ function winnerMsg() {
       messageEl.textContent = 'Player 2 wins!'
       confetti.start(1500)
       document.getElementById('grass').innerHTML = '<img src="/assets/animated-flower.png"/>'
+      document.getElementById('grass').style.top = "-310px"
       
 
     }  else {
     messageEl.textContent = `Player ${winner} wins!`
     confetti.start(2500)
     document.getElementById('grass').innerHTML = '<img src="/assets/animated-flower.png"/>'
-    
+    document.getElementById('grass').style.top = "-310px"
   } 
 
   } else if (winner === 'T') {
