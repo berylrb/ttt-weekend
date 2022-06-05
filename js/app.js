@@ -139,7 +139,7 @@ function winnerMsg() {
       confetti.start(1500)
       document.getElementById('grass').innerHTML = '<img src="/assets/animated-flower.png"/>'
       if (window.matchMedia("(max-width: 768px)")){
-        document.getElementById('grass').style.top = "-120px"
+        document.getElementById('grass').style.top = "-170px"
       } else {
       document.getElementById('grass').style.top = "-310px"
       }
@@ -150,7 +150,7 @@ function winnerMsg() {
     confetti.start(2500)
     document.getElementById('grass').innerHTML = '<img src="/assets/animated-flower.png"/>'
     if (window.matchMedia("(max-width: 768px)")){
-      document.getElementById('grass').style.top = "-120px"
+      document.getElementById('grass').style.top = "-170px"
     } else {
     document.getElementById('grass').style.top = "-310px"
     }
