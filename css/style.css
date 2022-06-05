@@ -13,7 +13,7 @@ body {
 
   @media only screen and (max-width: 768px) {
     grass {
-      top: -110px;
+      top: 110px;
     }
   }
 
