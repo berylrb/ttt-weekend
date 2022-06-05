@@ -11,6 +11,12 @@ body {
   color: #00473e;
   }
 
+  @media only screen and (max-width: 768px) {
+    grass {
+      top: -110px;
+    }
+  }
+
   section.heading {
     margin-top:100px;
     position: relative;
