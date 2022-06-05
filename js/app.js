@@ -138,14 +138,22 @@ function winnerMsg() {
       messageEl.textContent = 'Player 2 wins!'
       confetti.start(1500)
       document.getElementById('grass').innerHTML = '<img src="/assets/animated-flower.png"/>'
+      if (window.matchMedia("(max-width: 768px)")){
+        document.getElementById('grass').style.top = "-90px"
+      } else {
       document.getElementById('grass').style.top = "-310px"
+      }
       
 
     }  else {
     messageEl.textContent = `Player ${winner} wins!`
     confetti.start(2500)
     document.getElementById('grass').innerHTML = '<img src="/assets/animated-flower.png"/>'
+    if (window.matchMedia("(max-width: 768px)")){
+      document.getElementById('grass').style.top = "-90px"
+    } else {
     document.getElementById('grass').style.top = "-310px"
+    }
   } 
 
   } else if (winner === 'T') {

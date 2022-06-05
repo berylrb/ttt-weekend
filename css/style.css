@@ -11,11 +11,11 @@ body {
   color: #00473e;
   }
 
-  @media only screen and (max-width: 768px) {
+  /* @media only screen and (max-width: 768px) {
     grass {
-      bottom: -310px !important;
+      bottom: -310px;
     }
-  }
+  } */
 
   section.heading {
     margin-top:100px;
