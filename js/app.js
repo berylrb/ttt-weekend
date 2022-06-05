@@ -142,6 +142,7 @@ function winnerMsg() {
     }  else {
     messageEl.textContent = `Player ${winner} wins!`
     confetti.start(2500)
+    document.getElementById('grass').innerHTML = '<img src="/assets/animated-flower.png"/>'
     
   } 
 
