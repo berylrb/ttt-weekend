@@ -49,6 +49,7 @@ function init() {
   resetBttn.setAttribute('hidden', true)
   // document.getElementById('grass').classList.remove("sprite")
   document.getElementById('grass').innerHTML = '<img src="./assets/grass.png">'
+
   render()
 }
 
@@ -142,6 +143,7 @@ function winnerMsg() {
         document.getElementById('grass').style.top = "-170px"
       } else {
       document.getElementById('grass').style.top = "-310px"
+      document.getElementById('animationContainer').style.bottom = "500px"
       }
       
 
@@ -153,6 +155,7 @@ function winnerMsg() {
       document.getElementById('grass').style.top = "-170px"
     } else {
     document.getElementById('grass').style.top = "-310px"
+    document.getElementById('animationContainer').style.bottom = "500px"
     }
   } 
 
@@ -221,29 +224,9 @@ function getWinner() {
 
 
 
--need to make a reset button
-  ---- added the button but I don't like that it messes with the formatting when it pops in. how to make locations static?
-
-
-
-how to add strike out on toe?
-
-
-make text flash three colors when a player wins?
-  - blue green orange for player 2
-  - yellow pink orange for player 1
-
-need to figure out animation for win event
-
-
-flash colors of winning rows
 
 day / night mode depending on time
 
-
-
-
-add the "grow" over toe if possible
 
 
 */

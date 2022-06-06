@@ -18,7 +18,7 @@ body {
   } */
 
   section.heading {
-    margin-top:100px;
+    margin-top:-10px;
     position: relative;
   }
   
@@ -45,9 +45,10 @@ body {
   grid-template-columns: repeat(3, 15vmin);
   grid-gap: 0vmin;
   border: 3px solid #00473e;
-  margin-bottom: -50px;
+  /* margin-bottom: -50px; */
   margin-top: 10px;
   position: relative;
+  bottom: -40px;
   }
   
   
@@ -77,8 +78,11 @@ body {
     height: 44.53px;
     max-height: 44.53px;
     min-height: 44.53px;
+    margin-top: -50px;
     position: relative;
     z-index: 4;
+    margin-bottom: -80px;
+    bottom: -20px;
   }
   
   button {
@@ -90,7 +94,8 @@ body {
   /* bottom: 50px; */
   border-radius: 12px;
   padding: 8px;
-  box-shadow: 1px 4px #475d5b
+  box-shadow: 1px 4px #475d5b;
+  
   }
   
   button:hover {
@@ -133,7 +138,7 @@ body {
   
   
   #animationContainer {
-  max-height: 120px;
+  max-height: 130vh;
   position: relative;
   display: flex;
   margin-top: auto;
@@ -143,21 +148,22 @@ body {
   #grass{
     z-index: -1;
     position: relative;
+    max-height: 100vh;
   }
-
+/* 
 .sprite {
   display: flex;
   object-fit: cover;
   width: auto;
   max-height: auto;
   position: relative;
-  animation: playY steps(48) infinite;
-}
+  animation: playY steps(48) infinite; */
 
-@keyframes playY {
+
+/* @keyframes playY {
   from { background-position-y: 0px;}
-  to { background-position-y: -365px;}
-}
+  to { background-position-y: -365px;} */
+/* } */
 
 
   
