@@ -196,7 +196,7 @@ function handleClick(evt) {
 }
 
 
-
+// figure out if someone won
 
 
 function getWinner() {
@@ -219,14 +219,5 @@ function getWinner() {
 }
 
 
-/*  problems to fix:
 
-
-
-
-
-day / night mode depending on time
-
-
-
-*/
+// one day would like to fix the formatting with the animation.
