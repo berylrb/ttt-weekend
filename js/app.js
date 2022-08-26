@@ -47,7 +47,6 @@ function init() {
   turn = 1
   winner = null
   resetBttn.setAttribute('hidden', true)
-  // document.getElementById('grass').classList.remove("sprite")
   document.getElementById('grass').innerHTML = '<img src="./assets/grass.png">'
 
   render()
