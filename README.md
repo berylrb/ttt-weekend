@@ -17,6 +17,6 @@ This game features custom animations and illustrations, as well as confetti anim
 ## Icebox:
 Features I'm planning to implement in the future:
 
-[ ] - fix the css --> this was one of the first projects I ever built, and I wrestled with the CSS for way too long. Now I have a much better understanding of how and why to use various styling rules, and I have big plans to revamp the CSS to be more effective and more logical (remove a lot of brute force styling rules and make sure everything fits properly). 
-[ ] - mobile optimization and/or varying board sizes.
-[ ] - add a dummy oponent that plays against the user.
+* [ ] - fix the css --> this was one of the first projects I ever built, and I wrestled with the CSS for way too long. Now I have a much better understanding of how and why to use various styling rules, and I have big plans to revamp the CSS to be more effective and more logical (remove a lot of brute force styling rules and make sure everything fits properly). 
+* [ ] - mobile optimization and/or varying board sizes.
+* [ ] - add a dummy oponent that plays against the user.
